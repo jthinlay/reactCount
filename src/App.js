@@ -38,22 +38,24 @@ class App extends Component {
   };
   render() {
     return (
-      <div>
+      <React.Fragment>
         <NavBar
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
-        <span>
-          <button className="btn m-2 btn-warning" onClick={this.handleReset}>
-            Reset
-          </button>
-        </span>
-        <Counters
-          counters={this.state.counters}
-          onIncrement={this.handleIncrement}
-          onDerement={this.handleDecrement}
-          onDelete={this.handleDelete}
-        />
-      </div>
+        <main className="container">
+          <span>
+            <button className="btn m-2 btn-warning" onClick={this.handleReset}>
+              Reset
+            </button>
+          </span>
+          <Counters
+            counters={this.state.counters}
+            onIncrement={this.handleIncrement}
+            onDerement={this.handleDecrement}
+            onDelete={this.handleDelete}
+          />
+        </main>
+      </React.Fragment>
     );
   }
 }
