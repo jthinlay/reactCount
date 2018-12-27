@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Navbar from "./components/navbar";
+import NavBar from "./components/navbar";
 import Counters from "./components/counters";
 
 class App extends Component {
@@ -11,10 +11,9 @@ class App extends Component {
       { id: 4, value: 0 }
     ]
   };
-  handleIncrement = product => {
+  handleIncrement = id => {
     const incrementCounters = [...this.state.counters];
-    const index = incrementCounters.indexOf(product);
-    incrementCounters[index] = { ...product };
+    const index = incrementCounters.indexOf(id);
     incrementCounters[index].value++;
     this.setState({ counters: incrementCounters });
   };
@@ -24,29 +23,33 @@ class App extends Component {
     decrementCounters[index].value--;
     this.setState({ counters: decrementCounters });
   };
-  handleDelete = d => {
-    const deleteCounters = this.state.counters.filter(c => c.id !== d);
+  handleDelete = product => {
+    const deleteCounters = this.state.counters.filter(
+      ccc => ccc.id !== product
+    );
     this.setState({ counters: deleteCounters });
   };
   handleReset = () => {
-    const resetCounters = this.state.counters.map(c => {
-      c.value = 0;
-      return c;
+    const resetCounters = this.state.counters.map(counter => {
+      counter.value = 0;
+      return counter;
     });
     this.setState({ counters: resetCounters });
   };
   render() {
     return (
       <React.Fragment>
-        <Navbar
+        <NavBar
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
-          subtotalCounters={this.state.counters.length}
         />
-
         <main className="container">
+          <span>
+            <button className="btn m-3 btn-warning" onClick={this.handleReset}>
+              RESET
+            </button>
+          </span>
           <Counters
             counters={this.state.counters}
-            onReset={this.handleReset}
             onIncrement={this.handleIncrement}
             onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}

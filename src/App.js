@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
 import Counters from "./components/counters";
+import NavBar from "./components/navbar";
 
 class App extends Component {
   state = {
@@ -17,15 +17,15 @@ class App extends Component {
     incrementCounters[index].value++;
     this.setState({ counters: incrementCounters });
   };
-  handleDecrement = product => {
+  handleDecrement = id => {
     const decrementCounters = [...this.state.counters];
-    const index = decrementCounters.indexOf(product);
+    const index = decrementCounters.indexOf(id);
     decrementCounters[index].value--;
     this.setState({ counters: decrementCounters });
   };
   handleDelete = product => {
     const deleteCounters = this.state.counters.filter(
-      ccc => ccc.id !== product
+      counter => counter.id !== product
     );
     this.setState({ counters: deleteCounters });
   };
@@ -38,24 +38,22 @@ class App extends Component {
   };
   render() {
     return (
-      <React.Fragment>
+      <div>
         <NavBar
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
-        <main className="container">
-          <span>
-            <button className="btn m-3 btn-warning" onClick={this.handleReset}>
-              RESET
-            </button>
-          </span>
-          <Counters
-            counters={this.state.counters}
-            onIncrement={this.handleIncrement}
-            onDecrement={this.handleDecrement}
-            onDelete={this.handleDelete}
-          />
-        </main>
-      </React.Fragment>
+        <span>
+          <button className="btn m-2 btn-warning" onClick={this.handleReset}>
+            Reset
+          </button>
+        </span>
+        <Counters
+          counters={this.state.counters}
+          onIncrement={this.handleIncrement}
+          onDerement={this.handleDecrement}
+          onDelete={this.handleDelete}
+        />
+      </div>
     );
   }
 }
