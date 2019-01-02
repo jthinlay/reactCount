@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Counters from "./components/counters";
 import NavBar from "./components/navbar";
+import Counters from "./components/counters";
 
 class App extends Component {
   state = {
@@ -23,26 +23,25 @@ class App extends Component {
     decrementCounters[index].value--;
     this.setState({ counters: decrementCounters });
   };
-  handleDelete = product => {
-    const deleteCounters = this.state.counters.filter(
-      counter => counter.id !== product
-    );
+  handleDelete = id => {
+    const deleteCounters = this.state.counters.filter(ccc => ccc.id != id);
     this.setState({ counters: deleteCounters });
   };
   handleReset = () => {
-    const resetCounters = this.state.counters.map(counter => {
-      counter.value = 0;
-      return counter;
+    const resetCounters = this.state.counters.map(ccc => {
+      ccc.value = 0;
+      return ccc;
     });
     this.setState({ counters: resetCounters });
   };
   render() {
     return (
       <React.Fragment>
-        <NavBar
-          totalCounters={this.state.counters.filter(c => c.value > 0).length}
-        />
         <main className="container">
+          <NavBar
+            //totalCounters={this.state.counters.filter(c => c.value > 0).length}
+            totalCounters={this.state.counters.filter(c => c.value > 0).length}
+          />
           <span>
             <button className="btn m-2 btn-warning" onClick={this.handleReset}>
               Reset
@@ -51,7 +50,7 @@ class App extends Component {
           <Counters
             counters={this.state.counters}
             onIncrement={this.handleIncrement}
-            onDerement={this.handleDecrement}
+            onDecrement={this.handleDecrement}
             onDelete={this.handleDelete}
           />
         </main>

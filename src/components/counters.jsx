@@ -8,9 +8,9 @@ class Counters extends Component {
         {this.props.counters.map(counter => (
           <Counter
             key={counter.id}
-            counter={counter}
+            counters={counter}
             onIncrement={this.props.onIncrement}
-            onDerement={this.props.onDerement}
+            onDecrement={this.props.onDecrement}
             onDelete={this.props.onDelete}
           />
         ))}
