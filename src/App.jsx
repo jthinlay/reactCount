@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import NavBar from "./components/navbar";
 import Counters from "./components/counters";
+import NavBar from "./components/navbar";
 
 class App extends Component {
   state = {
@@ -11,26 +11,26 @@ class App extends Component {
       { id: 4, value: 0 }
     ]
   };
-  handleIncrement = id => {
+  handleIncrement = value => {
     const incrementCounters = [...this.state.counters];
-    const index = incrementCounters.indexOf(id);
+    const index = incrementCounters.indexOf(value);
     incrementCounters[index].value++;
     this.setState({ counters: incrementCounters });
   };
-  handleDecrement = id => {
+  handleDecrement = value => {
     const decrementCounters = [...this.state.counters];
-    const index = decrementCounters.indexOf(id);
+    const index = decrementCounters.indexOf(value);
     decrementCounters[index].value--;
     this.setState({ counters: decrementCounters });
   };
   handleDelete = id => {
-    const deleteCounters = this.state.counters.filter(ccc => ccc.id != id);
+    const deleteCounters = this.state.counters.filter(ccc => ccc.id !== id);
     this.setState({ counters: deleteCounters });
   };
   handleReset = () => {
-    const resetCounters = this.state.counters.map(ccc => {
-      ccc.value = 0;
-      return ccc;
+    const resetCounters = this.state.counters.map(counter => {
+      counter.value = 0;
+      return counter;
     });
     this.setState({ counters: resetCounters });
   };
@@ -39,14 +39,13 @@ class App extends Component {
       <React.Fragment>
         <main className="container">
           <NavBar
-            //totalCounters={this.state.counters.filter(c => c.value > 0).length}
-            totalCounters={this.state.counters.filter(c => c.value > 0).length}
+            totalCounters={
+              this.state.counters.filter(ccc => ccc.value > 0).length
+            }
           />
-          <span>
-            <button className="btn m-2 btn-warning" onClick={this.handleReset}>
-              Reset
-            </button>
-          </span>
+          <button className="btn m-2 btn-warning" onClick={this.handleReset}>
+            RESET
+          </button>
           <Counters
             counters={this.state.counters}
             onIncrement={this.handleIncrement}

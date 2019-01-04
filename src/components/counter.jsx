@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class Counter extends Component {
   render() {
     return (
@@ -17,7 +18,7 @@ class Counter extends Component {
           Decrement
         </button>
         <button
-          className="btn btn-sm btn-danger"
+          className="btn m-2 btn-danger"
           onClick={() => this.props.onDelete(this.props.counters.id)}
         >
           Delete
@@ -25,9 +26,8 @@ class Counter extends Component {
       </div>
     );
   }
-
   getBadgeClasses() {
-    let classes = "badge m-2 badge-pill badge-";
+    let classes = "badge m-2 badge-";
     classes += this.props.counters.value === 0 ? "warning" : "info";
     return classes;
   }
