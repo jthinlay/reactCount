@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 class Counter extends Component {
   render() {
     return (
@@ -7,19 +6,19 @@ class Counter extends Component {
         <span className={this.getBadgeClasses()}>{this.formatValue()}</span>
         <button
           className="btn m-2 btn-info"
-          onClick={() => this.props.onIncrement(this.props.counters)}
+          onClick={() => this.props.onIncrement(this.props.counter)}
         >
           Increment
         </button>
         <button
           className="btn m-2 btn-info"
-          onClick={() => this.props.onDecrement(this.props.counters)}
+          onClick={() => this.props.onDecrement(this.props.counter)}
         >
           Decrement
         </button>
         <button
-          className="btn m-2 btn-danger"
-          onClick={() => this.props.onDelete(this.props.counters.id)}
+          className="btn m-2 btn-sm btn-danger"
+          onClick={() => this.props.onDelete(this.props.counter.id)}
         >
           Delete
         </button>
@@ -28,12 +27,12 @@ class Counter extends Component {
   }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.props.counters.value === 0 ? "warning" : "info";
+    classes += this.props.value === 0 ? "warning" : "info";
     return classes;
   }
   formatValue() {
-    const { value } = this.props.counters;
-    return value === 0 ? "ZERO" : value;
+    const { value } = this.props;
+    return value === 0 ? "Zero" : value;
   }
 }
 export default Counter;
